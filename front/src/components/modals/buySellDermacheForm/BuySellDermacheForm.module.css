@@ -1,0 +1,26 @@
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f5f5f5;
+  box-shadow: 24px;
+  max-width: 345px;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 16px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+
+.submitBtn{
+  font-weight: 700;
+  font-size: 16px;
+}
+

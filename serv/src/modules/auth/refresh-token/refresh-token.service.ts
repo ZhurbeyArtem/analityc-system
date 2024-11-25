@@ -3,6 +3,7 @@ import { GetOneService } from 'src/modules/user/get-one/get-one.service';
 import { generateToken } from '../auth.utils';
 import { JwtService } from '@nestjs/jwt';
 import { EditService } from 'src/modules/user/edit/edit.service';
+import { TokenResponse } from '../interfaces/token.interface';
 
 @Injectable()
 export class RefreshTokenService {
@@ -12,7 +13,7 @@ export class RefreshTokenService {
     private jwtService: JwtService,
   ) {}
 
-  async refresh(refreshToken: string) {
+  async refresh(refreshToken: string): Promise<TokenResponse> {
     try {
       const user =
         await this.userGetOneService.findOneByRefreshToken(refreshToken);

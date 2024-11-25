@@ -18,6 +18,8 @@ import { GetOneService } from './get-one/get-one.service';
 import { RemoveService } from './remove/remove.service';
 import { EditService } from './edit/edit.service';
 import { EditPortfolioDto } from './edit/edit.dto';
+import { IPortfolio } from './get-one/get-one.interface';
+import { AnalyzeService } from './analyze/analyze.service';
 
 @UseGuards(AuthGuard)
 @Controller('portfolio')
@@ -28,7 +30,8 @@ export class PortfolioController {
     private getOneService: GetOneService,
     private deleteService: RemoveService,
     private editService: EditService,
-  ) {}
+    private analyzeService: AnalyzeService
+  ) { }
 
   @Post('create')
   create(@Body() data: CreatePortfolioDto, @Req() req) {
@@ -43,8 +46,10 @@ export class PortfolioController {
   }
 
   @Get('/:id')
-  getOne(@Param('id', ParseIntPipe) id: number) {
-    return this.getOneService.getOne({ id: id });
+  async getOne(@Param('id', ParseIntPipe) id: number) {
+    const portfolio = await this.getOneService.getOne({ id: id })
+    if (portfolio.dermaches.length < 1) return portfolio
+    return this.getOneService.getOneWithData(portfolio);
   }
 
   @Delete('/:id')
@@ -61,5 +66,12 @@ export class PortfolioController {
   ) {
     const userId = req.user.id;
     return this.editService.edit(id, data, userId);
+  }
+
+  @Post('/analyze')
+  analyze(
+    @Body() data: IPortfolio
+  ) {
+    return this.analyzeService.analyze(data)
   }
 }

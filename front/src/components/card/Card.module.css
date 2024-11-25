@@ -1,0 +1,33 @@
+.card {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.negative {
+  color: red;
+}
+.positive {
+  color: rgb(21, 185, 21);
+}
+.type {
+  color: black;
+}
+.ticker {
+  font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+  .card{
+    flex: 1 1 calc(48% - 15px);
+  }
+}
+@media screen and (min-width: 1024px) {
+  .card{
+    flex: none;
+  }
+}

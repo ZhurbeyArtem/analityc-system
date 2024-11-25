@@ -6,6 +6,8 @@ import { UserModule } from '../user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { RefreshTokenService } from './refresh-token/refresh-token.service';
 import { ConfirmEmailService } from './confirm-email/confirm-email.service';
+import { ResendCodeService } from './resend-code/resend-code.service';
+import { NotificationModule } from '../notification/notification.module';
 
 @Module({
   imports: [
@@ -16,12 +18,14 @@ import { ConfirmEmailService } from './confirm-email/confirm-email.service';
         expiresIn: '24h',
       },
     }),
+    NotificationModule
   ],
   providers: [
     RegisterService,
     LoginService,
     RefreshTokenService,
     ConfirmEmailService,
+    ResendCodeService,
   ],
   controllers: [AuthController],
   exports: [RegisterService, LoginService, JwtModule],

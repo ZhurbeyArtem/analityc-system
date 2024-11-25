@@ -9,6 +9,8 @@ import { AnalyzeService } from './analyze/analyze.service';
 import { Portfolio } from 'src/common/database/entities/portfolio.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '../auth/auth.module';
+import { DermacheModule } from '../dermache/dermache.module';
+
 
 @Module({
   controllers: [PortfolioController],
@@ -23,6 +25,7 @@ import { AuthModule } from '../auth/auth.module';
   imports: [
     TypeOrmModule.forFeature([Portfolio]),
     forwardRef(() => AuthModule),
+    forwardRef(() => DermacheModule)
   ],
   exports: [GetOneService],
 })

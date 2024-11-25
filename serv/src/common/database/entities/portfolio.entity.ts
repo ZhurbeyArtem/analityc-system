@@ -1,6 +1,7 @@
 import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   ManyToOne,
   OneToMany,
@@ -27,6 +28,9 @@ export class Portfolio {
   @Column({ default: 0 })
   @IsNumber()
   totalStartSum: number;
+
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.portfolios)
   user: User;

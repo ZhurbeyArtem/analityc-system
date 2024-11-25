@@ -1,0 +1,28 @@
+
+.title {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(13, 20, 33);
+  margin-bottom: 12px;
+}
+.btn {
+  width: 100%;
+  font-weight: 600;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.item {
+  background-color: #f8fafd;
+  border-radius: 8px;
+}
+@media screen and (min-width: 1024px) {
+.sidebar {
+  max-width: 340px;
+  min-width: 233px;
+  width: 100%;
+}
+}

@@ -11,7 +11,7 @@ export class DermacheController {
   constructor(
     private buyService: BuyService,
     private sellService: SellService,
-  ) {}
+  ) { }
 
   @Post('/buy')
   buy(@Body() data: BuyDto, @Req() req) {
@@ -24,4 +24,6 @@ export class DermacheController {
     const userId = req.user.id;
     return this.sellService.sell(data, userId);
   }
+
+
 }

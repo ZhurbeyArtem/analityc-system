@@ -1,0 +1,35 @@
+.portfolio{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  height: 100%;
+  margin-bottom: 50px;
+}
+.header{
+  display: flex;
+justify-content: space-between;
+}
+.btns{
+  display: flex;
+  gap: 15px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .list {
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex: 1;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .list {
+  }
+.charts{
+  display: flex;
+}
+}

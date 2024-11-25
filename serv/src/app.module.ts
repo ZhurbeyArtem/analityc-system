@@ -7,6 +7,7 @@ import { PortfolioModule } from './modules/portfolio/portfolio.module';
 import { DermacheModule } from './modules/dermache/dermache.module';
 import { NotificationModule } from './modules/notification/notification.module';
 
+
 @Module({
   imports: [
     CommonModule,
@@ -15,6 +16,7 @@ import { NotificationModule } from './modules/notification/notification.module';
     PortfolioModule,
     DermacheModule,
     NotificationModule,
+
   ],
 })
 export class AppModule {}
