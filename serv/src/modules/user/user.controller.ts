@@ -3,7 +3,7 @@ import { UserBaseDto } from './user.dto';
 import { CreateService } from './create/create.service';
 import { EditService } from './edit/edit.service';
 import { RemoveService } from './remove/remove.service';
-import { removeUserDto } from './remove/remove.dto';
+import { RemoveUserDto } from './remove/remove.dto';
 import { EditUserDto } from './edit/edit.dto';
 import { AuthGuard } from '../auth/auth.guard';
 
@@ -29,7 +29,7 @@ export class UserController {
 
   @UseGuards(AuthGuard)
   @Delete('delete')
-  deleteUser(@Body() data: removeUserDto) {
+  deleteUser(@Body() data: RemoveUserDto) {
     return this.removeUserService.remove(data);
   }
 }

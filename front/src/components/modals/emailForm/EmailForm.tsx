@@ -24,6 +24,7 @@ const EmailForm = () => {
 
   const onSubmit = (data: { email: string }) => {
     mutate(data)
+    localStorage.setItem('email', data.email)
     setOpen()
     openConfirmForm()
     reset()

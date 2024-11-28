@@ -26,7 +26,16 @@ export const sell = async (data: ISellDermache):Promise<string> => {
     }
     throw error
   }
+}
 
-
-
+export const deleteDermache = async (id: number) => {
+  try {
+    const { data: result } = await api.delete(`/dermache/${id}`)
+    return result
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      throw error.response.data.message;
+    }
+    throw error
+  }
 }

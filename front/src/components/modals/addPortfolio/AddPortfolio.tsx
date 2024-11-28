@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 const AddPortfolio = () => {
   const client = useQueryClient()
   const { register, handleSubmit, formState: { errors }, reset } = useForm<IPortfolio>();
-  const { isOpen, setOpen, data: portfolio, type } = usePortfolioForm()
+  const { isOpen, setOpen, data: portfolio, type, setData } = usePortfolioForm()
   const { mutate: create } = useMutation({
     mutationFn: (data: IPortfolio) => createPortfolio(data),
     onSuccess: () => {
@@ -23,8 +23,10 @@ const AddPortfolio = () => {
   })
   const { mutate: edit } = useMutation({
     mutationFn: (data: IPortfolio) => editPortfolio(data),
-    onSuccess: () => {
+    onSuccess: (data) => {
+      client.invalidateQueries({ queryKey: ['portfolio', data.id] })
       client.invalidateQueries({ queryKey: ['portfolios'] })
+      setData(data)
       toast.success("Портфель успішно відредактовано")
     },
     onError: (error) => {

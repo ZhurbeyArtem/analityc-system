@@ -1,3 +1,8 @@
 .tBody{
   font-size: 24px;
 }
+.btns{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

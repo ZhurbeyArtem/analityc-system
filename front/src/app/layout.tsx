@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import BuySellDermacheForm from "@/components/modals/buySellDermacheForm/BuySellDermacheForm";
 import { Suspense } from "react";
 import AnalyzePortfolio from "@/components/modals/analyzePortfolio/AnalyzePortfolio";
+import ConfirmDelete from "@/components/modals/confirmDelete/ConfirmDelete";
 
 
 export const metadata: Metadata = {
@@ -33,7 +34,7 @@ export default function RootLayout({
             <div className="container">
               {children}
             </div>
-
+            <ConfirmDelete />
             <AnalyzePortfolio />
             <AuthForm />
             <EmailForm />

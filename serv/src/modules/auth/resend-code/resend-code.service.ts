@@ -11,7 +11,7 @@ export class ResendCodeService {
     private editUserService: EditService,
     private userGetOneService: GetOneService
   ) { }
-  async resendCode({ email }: ResendCodeDto) {
+  async resendCode({ email }: ResendCodeDto):Promise<string> {
     try {
 
       await this.userGetOneService.findOne(

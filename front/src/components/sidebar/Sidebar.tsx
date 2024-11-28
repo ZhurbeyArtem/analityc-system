@@ -1,6 +1,6 @@
 "use client"
-import { deletePortfolio, getPortfolios } from '@/api/portfolio'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { getPortfolios } from '@/api/portfolio'
+import {  useQuery } from '@tanstack/react-query'
 import React, { useEffect } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import s from './Sidebar.module.css'
@@ -12,19 +12,18 @@ import AddPortfolio from '../modals/addPortfolio/AddPortfolio';
 import { usePortfolioForm } from '@/hooks/openPortfolioForm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useDeleteForm } from '@/hooks/openDeleteForm';
+import { EDeleteFormState } from '@/enums/deleteForm.enum';
 const Sidebar = () => {
-  const client = useQueryClient()
 
   const { data, isLoading } = useQuery({
     queryKey: ['portfolios'],
     queryFn: getPortfolios,
   })
-  const { mutate: deletePortfolioFn } = useMutation({
-    mutationFn: (id: number) => deletePortfolio(id),
-    onSuccess: () => client.invalidateQueries({ queryKey: ['portfolios'] })
-  })
+
   const { setPortfolio } = useSetPortfolio()
   const { setOpen, setData, setType } = usePortfolioForm()
+  const { setOpen: setOpenDeleteForm, setId, setType: setDeleteFormType } = useDeleteForm()
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -48,6 +47,15 @@ const Sidebar = () => {
     setOpen()
     setType('edit')
   };
+
+  const handleDeleteClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>, id: number) => {
+    event.stopPropagation();
+    setId(id)
+    setDeleteFormType(EDeleteFormState.portfolio)
+    setOpenDeleteForm();
+  }
+
+
   return (
     isLoading
       ? <p>loading...</p>
@@ -63,7 +71,7 @@ const Sidebar = () => {
                 <ListItemText primary={item.title} />
 
                 <EditIcon onClick={(e) => handleEditClick(e, item)} />
-                <DeleteIcon onClick={() => deletePortfolioFn(item.id)} />
+                <DeleteIcon onClick={(e) => handleDeleteClick(e, item.id)} />
               </ListItemButton>
             </ListItem>
           )}

@@ -11,4 +11,5 @@ export interface IGetOnePortfolio {
     averages: number[],
     range: string[]
   }
+  description?: string
 }

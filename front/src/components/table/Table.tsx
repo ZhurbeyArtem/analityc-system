@@ -9,6 +9,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import React, { FC } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
+import s from './Table.module.css'
+import { useDeleteForm } from '@/hooks/openDeleteForm';
+import { EDeleteFormState } from '@/enums/deleteForm.enum';
 
 
 interface ITable {
@@ -36,6 +40,15 @@ const Table: FC<ITable> = ({ arr }) => {
     setType(BuySellType.sell)
     setTicker(ticker)
   }
+  const { setOpen: setOpenDeleteForm, setId, setType: setDeleteFormType } = useDeleteForm()
+
+  const handleDeleteClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>, id: number) => {
+    event.stopPropagation();
+    setId(id)
+    setDeleteFormType(EDeleteFormState.dermache)
+    setOpenDeleteForm();
+  }
+
   return (
     <TableContainer sx={{
       overflowX: 'auto',
@@ -70,8 +83,9 @@ const Table: FC<ITable> = ({ arr }) => {
               <TableCell >{dermache.sellPrice && `${dermache.sellPrice}$`}</TableCell>
               <TableCell >{dermache.sellCount}</TableCell>
               <TableCell >{dermache.volatility.toFixed(2)}</TableCell>
-              <TableCell>
+              <TableCell className={s.btns}>
                 <Button variant='outlined' onClick={() => handleClick(dermache.ticker)}>Продати</Button>
+                <DeleteIcon onClick={(e) => handleDeleteClick(e, dermache.id)} />
               </TableCell>
             </TableRow>
 

@@ -35,7 +35,7 @@ const BuySellDermacheForm = () => {
       client.invalidateQueries({ queryKey: ['portfolio'] })
       toast.success(`${data}`)
     },
-    onError: (error) => {      
+    onError: (error) => {
       toast.error(`${error}`)
     }
   })
@@ -107,7 +107,11 @@ const BuySellDermacheForm = () => {
                 size="small"
                 label="Ціна купівлі*"
                 variant="outlined"
-                {...register("buyPrice", { required: 'Це поле обов\'язкове' })}
+                {...register("buyPrice", {
+                  required: 'Це поле обов\'язкове', min: {
+                    value: 0,
+                    message: 'Мінімальна ціна купівлі повина бути > 0'
+                  } })}
                 error={!!errors.buyPrice}
                 helperText={errors?.buyPrice?.message}
                 fullWidth
@@ -117,7 +121,12 @@ const BuySellDermacheForm = () => {
                 label="Кількість купівлі*"
                 variant="outlined"
                 type="number"
-                {...register("buyCount", { required: 'Це поле обов\'язкове' })}
+                {...register("buyCount", {
+                  required: 'Це поле обов\'язкове', min: {
+                    value: 0,
+                    message: 'Мінімальна кількість повина бути > 0'
+                  }
+})}
                 error={!!errors.buyCount}
                 helperText={errors?.buyCount?.message}
                 fullWidth
@@ -132,7 +141,11 @@ const BuySellDermacheForm = () => {
                 label="Ціна продажу*"
                 variant="outlined"
                 type="number"
-                {...register("sellPrice", { required: 'Це поле обов\'язкове' })}
+                {...register("sellPrice", {
+                  required: 'Це поле обов\'язкове', min: {
+                    value: 0,
+                    message: 'Мінімальна ціна продажу повина бути > 0'
+                } })}
                 error={!!errors.sellPrice}
                 helperText={errors?.sellPrice?.message}
                 fullWidth
@@ -142,7 +155,10 @@ const BuySellDermacheForm = () => {
                 label="Кількість продажу*"
                 variant="outlined"
                 type="number"
-                {...register("sellCount", { required: 'Це поле обов\'язкове' })}
+                {...register("sellCount", { required: 'Це поле обов\'язкове',  min: {
+                value: 0,
+                    message: 'Мінімальна кількість повина бути > 0'
+                } })}
                 error={!!errors.sellCount}
                 helperText={errors?.sellCount?.message}
                 fullWidth

@@ -21,7 +21,7 @@ export class NotificationService {
         html: `<table role="presentation" style="padding: 10px; border: 1px solid lightblue; font-size: 24px; margin: 0 auto; width: 326px; border-radius: 8px; font-weight: 700; text-align: center;">
         <tr>
             <td>
-                <h3>${title}</h3>
+                <h3 style="margin-top: 0;">${title}</h3>
             </td>
         </tr>
         <tr>
@@ -42,7 +42,7 @@ export class NotificationService {
         </table>`,
       });
 
-      return 'Success';
+      return 'Успішно';
     } catch (error) {
       throw error;
     }

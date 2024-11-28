@@ -14,7 +14,7 @@ export class RemoveService {
     private dermacheDeleteService: DeleteService
   ) {}
 
-  async delete(id: number, userId: number) {
+  async delete(id: number, userId: number):Promise<string> {
     try {
       const portfolio = await this.getOneService.getOne({ id, type: 'delete' });
       if (portfolio.user.id !== userId)

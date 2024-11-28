@@ -50,6 +50,7 @@ export class GetOneService {
      
       const startPrice = countStartPrice(portfolio.dermaches)
       const dermachesWithCurrentPrice = await countCurrentPrice(portfolio.dermaches)
+      
       const dermaches = addInfoToDermaches(portfolio.dermaches, dermachesWithCurrentPrice)
       const currentPrice = portfolioCurrentPrice(dermaches)
 
@@ -69,6 +70,7 @@ export class GetOneService {
 
 
       return {
+        description: portfolio.description,
         currentPrice,
         profit,
         profitPercent,

@@ -10,14 +10,13 @@ export class DeleteService {
     private dermacheRepository: Repository<Dermache>,
   ) { }
 
-  async delete(id: number) {
+  async delete(id: number):Promise<string> {
     try {
       await this.dermacheRepository
         .createQueryBuilder('dermache')
-        .leftJoin('dermache.portfolio', 'portfolio')
         .delete()
-        .where('portfolio.id = :id', { id })
-        .execute();
+        .where('dermache.id = :id', { id })
+        .execute();      
       return 'Успішно'
     } catch (error) {
       throw error

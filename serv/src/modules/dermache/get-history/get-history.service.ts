@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
+import { IGetHistory } from '../interfaces/get-history.interface';
 @Injectable()
 export class GetHistoryService {
 
   async getHistory({
     tickers,
     createdAt,
-    dermaches }) {
+    dermaches }): Promise<IGetHistory> {
 
     const date = new Date()
     const body = {
@@ -42,7 +43,6 @@ export class GetHistoryService {
     const range = this.getDatesInRange(createdAt, date)
 
     return { averages, range }
-
   }
 
   private getDatesInRange(startDate: string, endDate: Date): string[] {

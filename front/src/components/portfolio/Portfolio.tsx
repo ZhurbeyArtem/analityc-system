@@ -22,7 +22,6 @@ const Portfolio = () => {
 
   })
 
-
   const { setOpen: setOpenAnalyze, setResult } = useAnalyze()
   const { mutate } = useMutation({
     mutationFn: () => analyzePortfolio(data!),
@@ -31,7 +30,6 @@ const Portfolio = () => {
         setResult(data)
     }
   })
-
 
   const { setOpen, setType } = useBuySellDermacheForm()
 
@@ -55,10 +53,12 @@ const Portfolio = () => {
       <div className={s.header}>
         <h3 className={s.title}>{data?.currentPrice?.toFixed(2) || 0}$</h3>
         <div className={s.btns}>
-          <Button variant='outlined' onClick={() => mutate()}>Аналіз портфелю</Button>
+          {data && data.dermaches.length > 0 && <Button variant='outlined' onClick={() => mutate()}>Аналіз портфелю</Button>}
           <Button variant='outlined' onClick={handleClickAdd}>Додати актив</Button>
         </div>
       </div>
+      {data?.description && <div className={s.description}>{data.description}</div>}
+
       {data?.currentPrice &&
         <div className={s.charts}>
           <Chart

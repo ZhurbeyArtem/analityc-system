@@ -1,15 +1,22 @@
-.portfolio{
+.portfolio {
   display: flex;
   flex-direction: column;
   gap: 40px;
   height: 100%;
   margin-bottom: 50px;
 }
-.header{
+.header {
   display: flex;
-justify-content: space-between;
+  justify-content: space-between;
 }
-.btns{
+
+.description {
+  border-radius: 16px;
+  background: #F5F5F5;
+  padding: 16px;
+}
+
+.btns {
   display: flex;
   gap: 15px;
 }
@@ -29,7 +36,7 @@ justify-content: space-between;
 @media screen and (min-width: 1024px) {
   .list {
   }
-.charts{
-  display: flex;
-}
+  .charts {
+    display: flex;
+  }
 }

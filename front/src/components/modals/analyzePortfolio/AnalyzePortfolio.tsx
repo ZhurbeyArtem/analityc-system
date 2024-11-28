@@ -7,7 +7,6 @@ import { useAnalyze } from '@/hooks/setAnalyze'
 
 const AnalyzePortfolio = () => {
   const { isOpen, setOpen, result } = useAnalyze()
-
   return (
     <Modal open={isOpen} onClose={() => setOpen()}>
       <Box className={s.box}>
@@ -22,6 +21,11 @@ const AnalyzePortfolio = () => {
           </ListItem>
           <ListItem disableGutters>
             <ListItemText
+              primary={`Волативність - ${result?.details.volatilityScore}`}
+            />
+          </ListItem>
+          <ListItem disableGutters>
+            <ListItemText
               primary={`Диверифікація - ${result?.details.diversificationScore}`}
             />
           </ListItem>
@@ -30,86 +34,77 @@ const AnalyzePortfolio = () => {
               primary={`Збалансованість - ${result?.details.balanceScore}`}
             />
           </ListItem>
-          <ListItem disableGutters>
-            <ListItemText
-              primary={`Волативність - ${result?.details.roiScore}`}
-            />
-          </ListItem>
+
         </List>
 
         {result?.issues && result?.issues.length > 0 &&
           <div>
-            <h4>Рішення для покращення портфелю</h4>
-            {result?.issues.map(issue => <p>{issue}</p>)}
+            <h4>Рішення для покращення портфелю:</h4>
+            {result?.issues.map(issue =>
+              <div key={issue}>
+                {issue.split('\n').map((line, index) => <div key={index}>
+                  <br />
+                  {
+                    index === 0
+                      ? <p><b>{line}</b></p>
+                      : <p>{line}</p>
+                  }
+                </div>)}
+              </div>)}
           </div>
         }
         <div>
-          <List
-            subheader={<ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Критерії оцінювання:</ListSubheader>}>
-            <li>
+          <List subheader={<ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Критерії оцінювання:</ListSubheader>}>
+            <div>
+              <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Roi:</ListSubheader>
               <ul>
-                <li>
-                  <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Roi:</ListSubheader>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`ROI > 20%: 40 балів`}
-                    />
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`ROI 10%-20%: 20 балів`}
-                    />
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`ROI < 10%: 0 балів`}
-                    />
-                  </ListItem>
-                </li>
-                <li>
-                  <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Волативність:</ListSubheader>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`Середня волатильність < 10%: низький ризик (30 балів)`}
-                    />
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`Волатильність 10–20%: середній ризик (15 балів)`}
-                    />
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`Волатильність > 20%: високий ризик (0 балів)`}
-                    />
-                  </ListItem>
-                </li>
-                <li>
-                  <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Диверсифікація:</ListSubheader>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`Усі активи < 50% ваги (жоден актив не має більше ніж 50% суми від усього портфелю): 20 балів.`}
-                    />
-                  </ListItem>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`Один чи кілька активів ≥ 50% ваги: 0 балів.`}
-                    />
-                  </ListItem>
-                </li>
-                <li>
-                  <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Збалансованість:</ListSubheader>
-                  <ListItem disableGutters>
-                    <ListItemText
-                      primary={`Один актив займає > 60% ваги: -20 балів.`}
-                    />
-                  </ListItem>
-                </li>
+                <ListItem disableGutters>
+                  <ListItemText primary={`ROI > 20%: 40 балів`} />
+                </ListItem>
+                <ListItem disableGutters>
+                  <ListItemText primary={`ROI 10%-20%: 20 балів`} />
+                </ListItem>
+                <ListItem disableGutters>
+                  <ListItemText primary={`ROI < 10%: 0 балів`} />
+                </ListItem>
               </ul>
-            </li>
-
-           
+            </div>
+            <div>
+              <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Волативність:</ListSubheader>
+              <ul>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Середня волатильність < 10%: низький ризик (30 балів)`} />
+                </ListItem>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Волатильність 10–20%: середній ризик (15 балів)`} />
+                </ListItem>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Волатильність > 20%: високий ризик (0 балів)`} />
+                </ListItem>
+              </ul>
+            </div>
+            <div>
+              <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Диверсифікація:</ListSubheader>
+              <ul>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Усі активи < 50% ваги (жоден актив не має більше ніж 50% суми від усього портфелю): 20 балів.`} />
+                </ListItem>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Один чи кілька активів ≥ 50% ваги: 0 балів.`} />
+                </ListItem>
+              </ul>
+            </div>
+            <div>
+              <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Збалансованість:</ListSubheader>
+              <ul>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Один актив займає > 60% ваги: -20 балів.`} />
+                </ListItem>
+              </ul>
+            </div>
           </List>
+
+
         </div>
       </Box>
     </Modal>

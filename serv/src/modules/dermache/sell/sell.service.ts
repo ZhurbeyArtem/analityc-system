@@ -13,9 +13,9 @@ export class SellService {
     private dermacheRepository: Repository<Dermache>,
     private getOneService: GetOneService,
     private editService: EditService,
-  ) {}
+  ) { }
 
-  async sell(data: SellDto, userId) {
+  async sell(data: SellDto, userId: number): Promise<string> {
     try {
       const dermache: Dermache = await this.getOneService.getOne(
         data.ticker,
