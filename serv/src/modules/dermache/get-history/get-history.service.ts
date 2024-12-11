@@ -53,8 +53,8 @@ export class GetHistoryService {
     do {
       const dayOfWeek = start.getDay();
       if (dayOfWeek !== 0 && dayOfWeek !== 6)
-        dates.push(start.toISOString().split('T')[0]); // Добавляем дату в формате "YYYY-MM-DD"
-      start.setDate(start.getDate() + 1); // Увеличиваем дату на 1 день
+        dates.push(start.toISOString().split('T')[0]); // Добавляєм дату в форматі "YYYY-MM-DD"
+      start.setDate(start.getDate() + 1); // збільшуєм дату на 1 день
     } while (start <= end)
 
     return dates;
