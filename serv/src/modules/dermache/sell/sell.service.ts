@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Dermache } from 'src/common/database/entities/dermache.entity';
-import { Repository } from 'typeorm';
 import { SellDto } from './sell.dto';
 import { GetOneService } from '../get-one/get-one.service';
 import { EditService } from '../edit/edit.service';
@@ -10,7 +9,6 @@ import { EditService } from '../edit/edit.service';
 export class SellService {
   constructor(
     @InjectRepository(Dermache)
-    private dermacheRepository: Repository<Dermache>,
     private getOneService: GetOneService,
     private editService: EditService,
   ) { }

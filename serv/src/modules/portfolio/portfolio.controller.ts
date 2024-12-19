@@ -49,6 +49,7 @@ export class PortfolioController {
   async getOne(@Param('id', ParseIntPipe) id: number) {
     const portfolio = await this.getOneService.getOne({ id: id })
     if (portfolio.dermaches.length < 1) return portfolio
+
     return this.getOneService.getOneWithData(portfolio);
   }
 

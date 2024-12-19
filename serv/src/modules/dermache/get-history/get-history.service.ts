@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { IGetHistory } from '../interfaces/get-history.interface';
+import { IGetHistoryDto } from './get-history.dto';
 @Injectable()
 export class GetHistoryService {
 
   async getHistory({
     tickers,
     createdAt,
-    dermaches }): Promise<IGetHistory> {
-
+    dermaches }: IGetHistoryDto): Promise<IGetHistory> {    
     const date = new Date()
     const body = {
       "q": {
@@ -31,7 +31,7 @@ export class GetHistoryService {
     const allValues = tickersArr.map(el => portfolioHistory.hloc[el].map((item) => {
       const dermache = dermaches.find(dermache => dermache.ticker === el)
       dermache.volatility = portfolioHistory.hloc[el].reduce((acc, cur) => acc + (cur[0] - cur[1]), 0) / portfolioHistory.hloc[el].length  // вираховуєм середню волативність активу
-      return item[3] * dermache.buyCount - (dermaches.sellCount || 0)
+      return item[3] * dermache.buyCount - (dermache.sellCount || 0)
     }))
 
     //середне значення всіх масивів
@@ -45,7 +45,7 @@ export class GetHistoryService {
     return { averages, range }
   }
 
-  private getDatesInRange(startDate: string, endDate: Date): string[] {
+  private getDatesInRange(startDate: Date, endDate: Date): string[] {
     const start = new Date(startDate);
     const end = new Date(endDate);
     const dates: string[] = [];

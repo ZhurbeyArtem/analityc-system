@@ -5,6 +5,7 @@ export interface IAnalyze {
     volatilityScore: number,
     diversificationScore: number,
     balanceScore: number,
+    sharpeScore: number
   },
   issues: string[],
 }

@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
+import { NotificationDto } from './notification.dto';
 
 @Injectable()
 export class NotificationService {
-  async sendEmail({ email, code, title }): Promise<string> {
+  async sendEmail({ email, code, title }: NotificationDto): Promise<string> {
     try {
       const transporter = nodemailer.createTransport({
         host: process.env.NOTIFICATION_HOST,

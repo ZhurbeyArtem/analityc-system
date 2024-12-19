@@ -21,6 +21,11 @@ const AnalyzePortfolio = () => {
           </ListItem>
           <ListItem disableGutters>
             <ListItemText
+              primary={`Коефіцієнт Шарпа - ${result?.details.sharpeScore}`}
+            />
+          </ListItem>
+          <ListItem disableGutters>
+            <ListItemText
               primary={`Волативність - ${result?.details.volatilityScore}`}
             />
           </ListItem>
@@ -70,6 +75,20 @@ const AnalyzePortfolio = () => {
               </ul>
             </div>
             <div>
+              <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Коефіцієнт Шарпа:</ListSubheader>
+              <ul>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Коефіцієнт Шарпа > 1: 10 балів`} />
+                </ListItem>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Коефіцієнт Шарпа > 0.5: 5 балів`} />
+                </ListItem>
+                <ListItem disableGutters>
+                  <ListItemText primary={`Коефіцієнт Шарпа < 0.5: 0 балів`} />
+                </ListItem>
+              </ul>
+            </div>
+            <div>
               <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Волативність:</ListSubheader>
               <ul>
                 <ListItem disableGutters>
@@ -87,7 +106,7 @@ const AnalyzePortfolio = () => {
               <ListSubheader disableSticky sx={{ bgcolor: 'transparent' }} disableGutters>Диверсифікація:</ListSubheader>
               <ul>
                 <ListItem disableGutters>
-                  <ListItemText primary={`Усі активи < 50% ваги (жоден актив не має більше ніж 50% суми від усього портфелю): 20 балів.`} />
+                  <ListItemText primary={`Усі активи < 50% ваги (жоден актив не має більше ніж 50% суми від усього портфелю): 10 балів.`} />
                 </ListItem>
                 <ListItem disableGutters>
                   <ListItemText primary={`Один чи кілька активів ≥ 50% ваги: 0 балів.`} />

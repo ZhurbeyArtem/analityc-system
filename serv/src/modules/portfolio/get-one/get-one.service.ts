@@ -67,8 +67,6 @@ export class GetOneService {
         createdAt: portfolio.createdAt,
         dermaches: dermaches
       })
-
-
       return {
         description: portfolio.description,
         currentPrice,
