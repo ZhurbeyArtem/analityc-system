@@ -8,17 +8,18 @@ import { EditService } from '../edit/edit.service';
 @Injectable()
 export class SellService {
   constructor(
-    @InjectRepository(Dermache)
     private getOneService: GetOneService,
     private editService: EditService,
   ) { }
 
   async sell(data: SellDto, userId: number): Promise<string> {
     try {
+      console.log(data);
+      
       const dermache: Dermache = await this.getOneService.getOne(
         data.ticker,
-        data.portfolio,
-      );
+        data.portfolio
+      )
 
       if (!dermache) {
         throw new HttpException(

@@ -36,7 +36,6 @@ const AddPortfolio = () => {
   const onSubmit = (data: IPortfolio) => {
     if (type === 'create') {
       create(data)
-
     } else {
       edit({ id: portfolio.id, title: data.title, description: data.description })
     }
@@ -46,7 +45,6 @@ const AddPortfolio = () => {
 
   const handleClose = () => {
     reset()
-
     setOpen()
   }
   return (
@@ -60,7 +58,7 @@ const AddPortfolio = () => {
             size='small'
             label="Назва*"
             variant="outlined"
-            defaultValue={portfolio.title}
+            defaultValue={type === 'edit' ? portfolio.title : ''}
             type="text"
             {...register("title", {
               required: 'Це поле обовязкове'
@@ -74,7 +72,7 @@ const AddPortfolio = () => {
             size='small'
             label="Опис"
             variant="outlined"
-            defaultValue={portfolio.description}
+            defaultValue={type === 'edit' ? portfolio.description : ''}
             type='text'
             fullWidth
             {...register("description")}

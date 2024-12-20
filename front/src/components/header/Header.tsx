@@ -23,7 +23,7 @@ const Header = () => {
           <p className={s.logo}>SA</p>
           {isAuth ?
             <div className={s.email}>
-              <p>{email}</p>
+              <p className={s.emailText}>{email}</p>
               <Button variant="outlined" onClick={handleLogout}>Вийти</Button>
             </div>
             : <Button variant="outlined" onClick={setOpen}>Авторизуватись</Button>}

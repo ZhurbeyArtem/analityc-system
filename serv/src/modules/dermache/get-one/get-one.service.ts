@@ -13,6 +13,11 @@ export class GetOneService {
 
   async getOne(ticker: string, portfolioId: Portfolio): Promise<Dermache> {
     try {
+      console.log('-*****');
+      
+      console.log(ticker);
+      console.log(portfolioId);
+      
       return await this.dermacheRepository
         .createQueryBuilder('dermache')
         .leftJoinAndSelect('dermache.portfolio', 'portfolio')
@@ -22,6 +27,10 @@ export class GetOneService {
         .select(['dermache', 'portfolio', 'user.id'])
         .getOne();
     } catch (error) {
+      console.log('+++++');
+      
+      console.log(error);
+      
       throw error;
     }
   }

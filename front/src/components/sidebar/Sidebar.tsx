@@ -26,10 +26,10 @@ const Sidebar = () => {
   const { setOpen: setOpenDeleteForm, setId, setType: setDeleteFormType } = useDeleteForm()
   const router = useRouter()
   const searchParams = useSearchParams()
+  const id = searchParams.get('id')
 
 
   useEffect(() => {
-    const id = searchParams.get('id')
 
     if (id === null && data?.length > 0) {
       router.push(`?id=${data[0].id}`)
@@ -48,26 +48,29 @@ const Sidebar = () => {
     setType('edit')
   };
 
+  const handleCreateClick = () => {
+    setOpen()
+    setType('create')
+}
+
   const handleDeleteClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>, id: number) => {
     event.stopPropagation();
     setId(id)
     setDeleteFormType(EDeleteFormState.portfolio)
     setOpenDeleteForm();
   }
-
-
   return (
     isLoading
       ? <p>loading...</p>
       : <div className={s.sidebar}>
         <p className={s.title}>Мої портфелі</p>
-        <Button className={s.btn} onClick={setOpen}>
+        <Button className={s.btn} onClick={handleCreateClick}>
           <AddIcon />Створити портфель
         </Button>
         <List className={s.list}>
           {data?.map((item: IPortfolio) =>
             <ListItem disablePadding key={item.id} >
-              <ListItemButton className={s.item} onClick={() => handleChange(item.id)}>
+              <ListItemButton className={Number(id) === item.id ? `${s.active} ${s.item}` : s.item} onClick={() => handleChange(item.id)}>
                 <ListItemText primary={item.title} />
 
                 <EditIcon onClick={(e) => handleEditClick(e, item)} />

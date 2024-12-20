@@ -28,13 +28,6 @@ export class AuthGuard implements CanActivate {
       }
       const user = this.jwtService.verify(token);
 
-      if (!user.isActivated) {
-        throw new HttpException(
-          'Спочатку потрібно активувати аккаунт',
-          HttpStatus.FORBIDDEN,
-        );
-      }
-
       req.user = user;
       return true;
     } catch (error) {

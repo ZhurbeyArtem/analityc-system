@@ -9,7 +9,7 @@ export const addInfoToDermaches = (dermaches: Dermache[], dermachesWithCurrentPr
     let profit
     let profitPercent
     if (ourDermache.sellPrice > 0) {
-      profit = ourDermache.sellCount * ourDermache.sellPrice - ourDermache.buyCount * ourDermache.buyPrice
+      profit = ourDermache.sellCount * ourDermache.sellPrice - ourDermache.sellCount * ourDermache.buyPrice
       profitPercent = ((ourDermache.sellPrice - ourDermache.buyPrice) / ourDermache.buyPrice) * 100
     }
     else {

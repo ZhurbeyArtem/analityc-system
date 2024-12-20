@@ -20,9 +20,17 @@
   align-items: center;
 }
 
-.email{
+.email {
   display: flex;
   gap: 20px;
-  align-items:center;
+  align-items: center;
   font-size: 18px;
+}
+.emailText {
+  display: none;
+}
+@media screen and (min-width: 764px) {
+  .emailText {
+    display: block;
+  }
 }

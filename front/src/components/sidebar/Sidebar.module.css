@@ -19,6 +19,9 @@
   background-color: #f8fafd;
   border-radius: 8px;
 }
+.active{
+  background-color: lightblue;
+}
 @media screen and (min-width: 1024px) {
 .sidebar {
   max-width: 340px;
